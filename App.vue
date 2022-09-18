@@ -1,25 +1,32 @@
 <template>
-<Todo></Todo>
-<TextBox></TextBox>
-<ChekList></ChekList>
+ <TabColor></TabColor>
+ <div class="page">
+ 
+ <button сlass="show-modal-button" @click="showModal">Показать модальное окно</button>
 
+ <modal-window ref="modal"></modal-window>
+ 
+</div>
 </template>
-
 <script>
-import Todo from "@/Todo";
-import ChekList from "@/components/ChekList"
-import TextBox from "@/components/TextBox"
+import TabColor from "@/components/TabColor.vue"
+import ModalWindow from "./components/ModalWindow.vue";
+
+
 export default {
+  name: 'App',
   components: {
-    Todo,
-    ChekList,
-    TextBox
+    TabColor,
+    ModalWindow
+},
+methods: {
+  showModal: () => {
+    this.$refs.modal.show = true
   }
+},
 }
+  
 </script>
 
 <style>
-* {
-  margin-bottom: 10px;
-}
 </style>
