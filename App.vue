@@ -1,32 +1,43 @@
 <template>
- <TabColor></TabColor>
- <div class="page">
- 
- <button сlass="show-modal-button" @click="showModal">Показать модальное окно</button>
+  <div>
+    <H1>Записная книжка</H1>
+  </div>
+  <FormL @create="createPost"/>
+  <PostL :posts="posts"
+          @remove="removePost"/>
 
- <modal-window ref="modal"></modal-window>
- 
-</div>
 </template>
-<script>
-import TabColor from "@/components/TabColor.vue"
-import ModalWindow from "./components/ModalWindow.vue";
 
+<script>
+import PostL from "@/components/PostL";
+import FormL from "@/components/FormL"
 
 export default {
   name: 'App',
   components: {
-    TabColor,
-    ModalWindow
-},
+    PostL,
+    FormL
+  },
+  data () {
+    return {
+      posts: [
+        { id:1, title: 'Сегодня', body: 'Первая запись'},
+        { id:2, title: 'Сегодня', body: 'Вторая запись'}
+      ],
+    }
+  },
 methods: {
-  showModal: () => {
-    this.$refs.modal.show = true
+    createPost (post) {
+      this.posts.push(post);
+    },
+  removePost (post) {
+      this.posts = this.posts.filter(p => p.id !== post.id)
   }
-},
+  }
 }
-  
+
 </script>
 
 <style>
+
 </style>
